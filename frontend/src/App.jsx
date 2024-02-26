@@ -20,9 +20,9 @@ function App() {
 
   return (
     <>
-      <h1>{
-        data.map((x) => (<h1>{x.employee} - {x.department}</h1>))
-        }</h1>
+      <h2>{
+        data.map((x) => (<h2>{x.employee} - {x.department}</h2>))
+        }</h2>
     </>
   )
 }
