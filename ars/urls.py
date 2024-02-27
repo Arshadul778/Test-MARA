@@ -19,6 +19,8 @@ from django.urls.conf import include
 from rest_framework_nested import routers
 # from . import views
 from pprint import pprint
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 from django.contrib import admin
@@ -30,5 +32,8 @@ from app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('app.urls'))
-]
+    path('image_upload/', hotel_image_view, name='image_upload'),
+    path('success/', success, name='success'),
+    path('', include('app.urls')),
+    path('hotel_images/', display_hotel_images, name='hotel_images'),
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
