@@ -1,8 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import generics
 
 from app.froms import HotelForm
 from . models import *
@@ -30,6 +32,13 @@ class ReactViewSet(ModelViewSet):
 
     def get_serializer_class(self):
         return ReactSerializer
+
+
+# @api_view()
+# def holelimageView(request):
+#     img = Hotel.objects.all().values()
+#     serializer = HotelSerializer(img)
+#     return Response(serializer.data)
 
 
 # Create your views here.
@@ -61,4 +70,64 @@ def display_hotel_images(request):
 
         # getting all the objects of hotel.
         Hotels = Hotel.objects.all()
+        # return render(request, 'tst.html')
         return render(request, 'dimages.html', {'hotel_images': Hotels})
+
+
+def display_hotel(request):
+
+    if request.method == 'GET':
+
+        # getting all the objects of hotel.
+        Hotels = Hotel.objects.all().values()
+        print(Hotels[0].get('name'))
+        return render(request, str(Hotels[0].get('name')))
+        # return HttpResponse('ok')
+
+
+class dsView(APIView):
+    def get(self, request):
+        output = [{'img': str(output[2])}
+                  for output in Hotel.objects.all().values_list()]
+        print(output)
+        return Response(output)
+
+
+class DisplayView(APIView):
+    def get(self, request):
+        output = [{
+            'id': x[0],
+            'name': x[1],
+            'url': (x[2]),
+            'rating': x[3]
+        }
+            for x in Hotel.objects.all().values_list()]
+        # print(output)
+        return Response(output)
+
+# class newhView(generics.ListAPIView):
+#     def get(self, request):
+#         qset = Hotel.objects.all()
+#         seq = HotelSerializer(qset)
+#         return Response(seq.data)y
+
+
+class Hotel_ViewSet(ModelViewSet):
+    def get_queryset(self):
+        return Hotel.objects.all()
+
+    def get_serializer_class(self):
+        return HotelSerializer
+
+
+@api_view()
+def hotel_detail(request, id):
+    query = Hotel.objects.get(pk=id)
+    hotel = HotelSerializer(query)
+    print(hotel.data)
+    return Response(hotel.data)
+
+
+class HotelViewSet(ModelViewSet):
+    queryset = Hotel.objects.all()
+    serializer_class = HotelSerializer

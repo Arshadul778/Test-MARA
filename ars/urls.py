@@ -35,5 +35,5 @@ urlpatterns = [
     path('image_upload/', hotel_image_view, name='image_upload'),
     path('success/', success, name='success'),
     path('', include('app.urls')),
-    path('hotel_images/', display_hotel_images, name='hotel_images'),
+    # path('hotel_images/', HotelViewset.as_view({'get': 'list'})),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,4 +11,4 @@ class ReactAdmin(admin.ModelAdmin):
 
 @admin.register(models.Hotel)
 class HotelAdmin(admin.ModelAdmin):
-    list_display = ['name']
+    list_display = ['id', 'name', 'rating']
