@@ -12,6 +12,19 @@
   padding: 20px;
   object-fit: cover; /* Ensure the image fills the specified dimensions */
 }
+.btn{
+  margin-top: 10px;
+}
+
+.pre {
+  display: flex;
+  justify-content: center;
+  
+}
+.b1{
+  background-color: #04AA6D;
+}
+
 
 .pls {
   display: inline-block;

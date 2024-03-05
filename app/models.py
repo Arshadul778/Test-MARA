@@ -9,7 +9,7 @@ class React(models.Model):
     count = models.IntegerField(default=0)
 
     def __str__(self) -> str:
-        return self.employee
+        return self.name
 
     class Meta:
         ordering = ['name']
