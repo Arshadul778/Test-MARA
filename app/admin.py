@@ -6,7 +6,7 @@ from . import models
 
 @admin.register(models.React)
 class ReactAdmin(admin.ModelAdmin):
-    list_display = ['employee', 'department']
+    list_display = ['name', 'department', 'count']
 
 
 @admin.register(models.Hotel)

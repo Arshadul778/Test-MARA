@@ -4,14 +4,15 @@ from django.db import models
 
 
 class React(models.Model):
-    employee = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     department = models.CharField(max_length=255)
+    count = models.IntegerField(default=0)
 
     def __str__(self) -> str:
         return self.employee
 
     class Meta:
-        ordering = ['employee']
+        ordering = ['name']
 
 # models.py
 

@@ -5,7 +5,13 @@ from . models import *
 class ReactSerializer(serializers.ModelSerializer):
     class Meta:
         model = React
-        fields = ['employee', 'department']
+        fields = ['name', 'department', 'count']
+
+
+class ReactSerializ(serializers.ModelSerializer):
+    class Meta:
+        model = React
+        fields = ['count']
 
 
 class HotelSerializer(serializers.ModelSerializer):

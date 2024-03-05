@@ -14,8 +14,9 @@ from . serializer import *
 
 class ReactView(APIView):
     def get(self, request):
-        output = [{'employee': output.employee,
-                   'department': output.department}
+        output = [{'name': output.name,
+                   'department': output.department,
+                   'count': output.count}
                   for output in React.objects.all()]
         return Response(output)
 
@@ -131,3 +132,19 @@ def hotel_detail(request, id):
 class HotelViewSet(ModelViewSet):
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
+
+
+@api_view(['GET', 'PATCH'])
+def user(request, id):
+    if request.method == 'GET':
+        query = React.objects.get(pk=id)
+        user_data = ReactSerializer(query)
+        return Response(user_data.data)
+    elif request.method == 'PATCH':
+        data = request.data
+        query = React.objects.get(pk=id)
+        serializer = ReactSerializ(instance=query, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            print(serializer.data)
+        return Response(serializer.data)

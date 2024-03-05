@@ -16,7 +16,8 @@ router.register(r'images', HotelViewSet)
 
 urlpatterns = [
     path('', ReactViewSet.as_view({'get': 'list'})),
-    path('hotel_images/', display_hotel_images, name='see'),
+    path('users/<id>/', user, name='see'),
+    # path('hotels/<id>/', hotel_detail, name='hotel_detail'),
     # path('hotel_images_see/', DisplayView.as_view()),
     # path('images/', Hotel_ViewSet.as_view({'get': 'list'})),
     # path('hotels/<id>/', hotel_detail, name='hotel_detail'),
