@@ -1,0 +1,19 @@
+{
+"username":"ARS",
+"first_name":"al",
+"last_name":"alam",
+"email":"a@gami.com",
+"password":"1210737282p"
+}
+
+DELETE FROM django_session WHERE session_key="z42aju2y6m7r2iue3ktcpykw1gepmb0q"
+
+
+SELECT session_key, session_data, expire_date
+FROM django_session;
+
+{
+"u_id":1,
+"m_id":3
+
+}

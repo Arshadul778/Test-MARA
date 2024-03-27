@@ -13,10 +13,17 @@ from app.views import *
 # urlpatterns = router.urls
 router = routers.DefaultRouter()
 router.register(r'images', HotelViewSet)
+router.register(r'models', ModelsViewSet)
+router.register(r'rating', RatingViewset)
+
 
 urlpatterns = [
     path('', ReactViewSet.as_view({'get': 'list'})),
     path('users/<id>/', user, name='see'),
+    path('login/', login_page, name='Login'),
+    path('register/', register_page, name='Register'),
+    path('logout/', logout_page, name='Logout'),
+    path('get/', get_rating, name='get'),
     # path('hotels/<id>/', hotel_detail, name='hotel_detail'),
     # path('hotel_images_see/', DisplayView.as_view()),
     # path('images/', Hotel_ViewSet.as_view({'get': 'list'})),
